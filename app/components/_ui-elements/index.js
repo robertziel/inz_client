@@ -1,4 +1,5 @@
 export * from './Button';
+export * from './Card';
 export * from './Container';
 export * from './Dialog';
 export * from './Divider';
@@ -6,6 +7,7 @@ export * from './LinearProgress';
 export * from './Note';
 export * from './Grid';
 export * from './H1';
+export * from './Modal';
 export * from './Paper';
 export * from './Scroll';
 export * from './Slider';

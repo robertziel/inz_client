@@ -32,6 +32,7 @@ function App(props) {
       <Scroll>
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/category/:id" component={HomePage} />
           <Route exact path="/profile" component={ProfilePage} />
           <Route exact path="/sign-in" element={ <Redirect to="/profile" /> } />
           <Route component={NotFoundPage} />

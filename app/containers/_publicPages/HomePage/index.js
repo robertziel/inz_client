@@ -8,22 +8,32 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { Divider, Grid, H1, Paper } from 'components/_ui-elements';
+import PropTypes from 'prop-types';
 
+import { Container, Divider, H1, Paper } from 'components/_ui-elements';
+
+import Search from 'components/Search';
 import messages from './messages';
 
-export default function HomePage() {
+export default function HomePage(props) {
+  const categoryId = props.match.params.id;
+
   return (
-    <Grid container>
-      <Grid item xs={12}>
-        <H1>
-          <FormattedMessage {...messages.header} />
-        </H1>
-        <Divider />
-      </Grid>
-      <Grid item xs={12} md={4}>
-        <Paper></Paper>
-      </Grid>
-    </Grid>
+    <Container>
+      <H1>
+        <FormattedMessage {...messages.header} />
+      </H1>
+
+      <Divider />
+      <Search categoryId={categoryId} />
+    </Container>
   );
 }
+
+HomePage.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }),
+};
