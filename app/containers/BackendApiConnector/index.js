@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import SignInPage from 'containers/_authPages/SignInPage/Loadable';
+import UnauthorisedApp from 'containers/UnauthorisedApp';
 
 import InternetConnectionDetector from 'containers/InternetConnectionDetector';
 
@@ -34,7 +34,7 @@ export class BackendApiConnector extends Component {
   }
 
   unauthenticatedContent() {
-    return <SignInPage />;
+    return <UnauthorisedApp />;
   }
 
   render() {

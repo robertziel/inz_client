@@ -13,7 +13,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import history from 'utils/history';
 
 // Import root app
-import App from 'containers/App';
+import AuthorisedApp from 'containers/AuthorisedApp';
 
 import BackendApiConnector from 'containers/BackendApiConnector';
 import LanguageProvider from 'containers/LanguageProvider';
@@ -35,7 +35,7 @@ export default function SetupContent(props) {
           <ConnectedRouter history={history}>
             <NotificationSystem />
             <BackendApiConnector store={store}>
-              <App />
+              <AuthorisedApp />
             </BackendApiConnector>
             <GlobalStyle />
           </ConnectedRouter>
