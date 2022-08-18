@@ -9,7 +9,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 import { createSelector } from 'reselect';
@@ -32,6 +32,7 @@ function App(props) {
       <Scroll>
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/profile" element={ <Redirect to="/sign-in" /> } />
           <Route exact path="/sign-in" component={SignInPage} />
           <Route component={NotFoundPage} />
         </Switch>
