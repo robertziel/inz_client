@@ -4,39 +4,40 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { SubmitButton, Button, Note, Grid, TextField } from 'components/_ui-elements';
-import { Link } from "react-router-dom";
 
 import { setAuthenticationToken } from 'containers/BackendApiConnector/actions';
 import useApiFetcher from 'containers/BackendApiConnector/fetcher';
+import { Link } from "react-router-dom";
 
 import messages from './messages';
-import { signedInNotify } from './notifications';
+import { signedUpNotify } from './notifications';
 
-function Form({ intl, onSignInSuccess }) {
+function Form({ intl, onSignUpSuccess }) {
   const fetcher = useApiFetcher();
 
   // Form state
   const [errorMessage, setErrorMessage] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
+  const [passwordConfirmation, setPasswordConfirmation] = useState(null);
 
   const onSubmit = (event) => {
     event.preventDefault();
 
     fetcher.post({
       disableRetry: true,
-      signIn: true,
-      path: '/auth/sign_in',
+      signUp: true,
+      path: '/auth/sign_up',
       body: {
         email,
         password,
+        password_confirmation: passwordConfirmation,
       },
       afterSuccess: (result) => {
         setErrorMessage(result.error_message);
 
-        if (result.authentication_token) {
-          onSignInSuccess(result.authentication_token);
-          signedInNotify();
+        if (result.success) {
+          signedUpNotify();
         }
       },
     });
@@ -66,14 +67,23 @@ function Form({ intl, onSignInSuccess }) {
         />
       </Grid>
       <Grid>
+        <TextField
+          label={intl.formatMessage(messages.formPasswordConfirmation)}
+          type="password"
+          name="password_confirmation"
+          onChange={(event) => setPasswordConfirmation(event.target.value)}
+          variant="outlined"
+        />
+      </Grid>
+      <Grid>
         <SubmitButton processing={fetcher.processing}>
           <FormattedMessage {...messages.formButton} />
         </SubmitButton>
       </Grid>
       <Grid>
-        <Link to="sign-up">
+        <Link to="sign-in">
           <Button>
-            <FormattedMessage {...messages.signUpButton} />
+            <FormattedMessage {...messages.signInButton} />
           </Button>
         </Link>
       </Grid>
@@ -83,14 +93,14 @@ function Form({ intl, onSignInSuccess }) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onSignInSuccess: (token) => dispatch(setAuthenticationToken(token)),
+    onSignUpSuccess: (token) => dispatch(setAuthenticationToken(token)),
     dispatch,
   };
 }
 
 Form.propTypes = {
   intl: intlShape.isRequired,
-  onSignInSuccess: PropTypes.func,
+  onSignUpSuccess: PropTypes.func,
 };
 
 export default injectIntl(connect(null, mapDispatchToProps)(Form));

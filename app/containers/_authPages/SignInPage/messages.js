@@ -23,4 +23,8 @@ export default defineMessages({
     id: `${scope}.notifications.signedInNotify`,
     defaultMessage: 'You are signed in!',
   },
+  signUpButton: {
+    id: `${scope}.buttons.signUp`,
+    defaultMessage: 'Create account',
+  },
 });
