@@ -26,6 +26,11 @@ function Form({ intl, user }) {
   const [email, setEmail] = useState(user.email);
   const [password, setPassword] = useState(null);
   const [passwordConfirmation, setPasswordConfirmation] = useState(null);
+  const [street, setStreet] = useState(user.street);
+  const [zipCode, setZipCode] = useState(user.zip_code);
+  const [city, setCity] = useState(user.city);
+  const [country, setCountry] = useState(user.country);
+  const [phone, setPhone] = useState(user.phone);
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -38,6 +43,11 @@ function Form({ intl, user }) {
         password,
         password_confirmation: passwordConfirmation,
         username,
+        street,
+        zip_code: zipCode,
+        city,
+        country,
+        phone,
       },
       afterSuccess: (result) => {
         if (result.profile) {
@@ -105,6 +115,71 @@ function Form({ intl, user }) {
           variant="outlined"
           helperText={errorMessages.password_confirmation}
           error={!!errorMessages.password_confirmation}
+        />
+      </Grid>
+      <br />
+      <h2>
+        <FormattedMessage {...messages.formAddress} />
+      </h2>
+      <Divider />
+      <Grid>
+        <TextField
+          defaultValue={street}
+          label={intl.formatMessage(messages.formStreet)}
+          type="street"
+          name="street"
+          onChange={(event) => setStreet(event.target.value)}
+          variant="outlined"
+          helperText={errorMessages.street}
+          error={!!errorMessages.street}
+        />
+      </Grid>
+      <Grid>
+        <TextField
+          defaultValue={zipCode}
+          label={intl.formatMessage(messages.formZipCode)}
+          type="zip_code"
+          name="zip_code"
+          onChange={(event) => setZipCode(event.target.value)}
+          variant="outlined"
+          helperText={errorMessages.zip_code}
+          error={!!errorMessages.zip_cide}
+        />
+      </Grid>
+      <Grid>
+        <TextField
+          defaultValue={city}
+          label={intl.formatMessage(messages.formCity)}
+          type="city"
+          name="city"
+          onChange={(event) => setCity(event.target.value)}
+          variant="outlined"
+          helperText={errorMessages.city}
+          error={!!errorMessages.city}
+        />
+      </Grid>
+      <Grid>
+        <TextField
+          defaultValue={country}
+          label={intl.formatMessage(messages.formCountry)}
+          type="country"
+          name="country"
+          onChange={(event) => setCountry(event.target.value)}
+          variant="outlined"
+          helperText={errorMessages.country}
+          error={!!errorMessages.country}
+        />
+      </Grid>
+      <Grid>
+        <TextField
+          defaultValue={phone}
+          label={intl.formatMessage(messages.formPhone)}
+          type="phone"
+          name="phone"
+          onChange={(event) => setPhone(event.target.value)}
+          variant="outlined"
+          helperText={errorMessages.phone}
+          error={!!errorMessages.phone}
         />
       </Grid>
       <Grid>

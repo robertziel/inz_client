@@ -28,6 +28,30 @@ export default defineMessages({
     id: `${scope}.form.passwordConfirmation`,
     defaultMessage: 'Confirm new password',
   },
+  formStreet: {
+    id: `${scope}.form.street`,
+    defaultMessage: 'Street',
+  },
+  formZipCode: {
+    id: `${scope}.form.zipCode`,
+    defaultMessage: 'Zip code',
+  },
+  formCity: {
+    id: `${scope}.form.city`,
+    defaultMessage: 'City',
+  },
+  formCountry: {
+    id: `${scope}.form.country`,
+    defaultMessage: 'Country',
+  },
+  formPhone: {
+    id: `${scope}.form.phone`,
+    defaultMessage: 'Phone',
+  },
+  formAddress: {
+    id: `${scope}.form.address`,
+    defaultMessage: 'Address',
+  },
   formButton: {
     id: `${scope}.form.button`,
     defaultMessage: 'Update',
