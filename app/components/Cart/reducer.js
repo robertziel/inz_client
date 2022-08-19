@@ -1,6 +1,6 @@
 import produce from 'immer';
 
-import { ADD_ONE, ADD_TO_CART, REMOVE_ONE } from './constants';
+import { ADD_ONE, ADD_TO_CART, REMOVE_ONE, CLEAR_CART } from './constants';
 
 export const initialState = {
   cart: {},
@@ -26,6 +26,9 @@ const cartProviderReducer = (state = initialState, action) =>
         if (draft.cart[action.item.id].amount == 0) {
           delete draft.cart[action.item.id];
         }
+        break;
+      case CLEAR_CART:
+        draft.cart = {};
         break;
     }
   });

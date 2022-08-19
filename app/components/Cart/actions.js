@@ -1,4 +1,4 @@
-import { ADD_TO_CART, ADD_ONE, REMOVE_ONE } from './constants';
+import { ADD_TO_CART, ADD_ONE, REMOVE_ONE, CLEAR_CART } from './constants';
 
 export function addToCart(item) {
   return {
@@ -19,4 +19,10 @@ export function substractOneMore(item) {
     type: REMOVE_ONE,
     item,
   };
+}
+
+export function clearCart() {
+  return {
+    type: CLEAR_CART,
+  }
 }

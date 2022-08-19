@@ -13,6 +13,7 @@ import { mustSignInNotify } from './notifications';
 
 import Total from './Total';
 import Product from './Product';
+import CartForm from './CartForm';
 
 class Cart extends React.Component {
   constructor(props) {
@@ -67,10 +68,6 @@ class Cart extends React.Component {
     });
   }
 
-  purchase() {
-    console.log('PURCHASE');
-  }
-
   render() {
     const isSignedIn = StoreAccessor.store.getState().backendApiConnector.authenticationToken == null;
 
@@ -105,13 +102,7 @@ class Cart extends React.Component {
             <Button onClick={component.closeModal}>X</Button>
             {products}
             <Total total={this.state.total} />
-            <Button
-              variant="contained"
-              color="success"
-              onClick={component.purchase}
-            >
-              Purchase
-            </Button>
+            <CartForm />
           </Paper>
         </Modal>
       </Wrapper>
