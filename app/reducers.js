@@ -9,6 +9,7 @@ import history from 'utils/history';
 
 import backendApiConnectorReducer from 'containers/BackendApiConnector/reducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
+import cartReducer from 'components/Cart/reducer';
 
 /**
  * Merges the main reducer with the router state and dynamically injected reducers
@@ -17,6 +18,7 @@ export default function createReducer(injectedReducers = {}) {
   const rootReducer = combineReducers({
     backendApiConnector: backendApiConnectorReducer,
     language: languageProviderReducer,
+    cart: cartReducer,
     router: connectRouter(history),
     ...injectedReducers,
   });
