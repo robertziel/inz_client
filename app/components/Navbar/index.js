@@ -3,6 +3,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import LanguageToggle from 'components/LanguageToggle/index';
 import SignOutSignInButton from 'components/SignOutSignInButton/index';
+import Cart from 'components/Cart';
 import { Button } from 'components/_ui-elements';
 import { Link } from "react-router-dom";
 
@@ -18,10 +19,13 @@ function Navbar() {
         <LanguageToggle />
       </div>
       <div className="navbar-right">
-        <Link to="/"><Button navbar><FontAwesome name="home" /></Button></Link>
+        <Cart />
       </div>
       <div className="navbar-right">
         <Link to="/profile"><Button navbar><FontAwesome name="user" /></Button></Link>
+      </div>
+      <div className="navbar-right">
+        <Link to="/"><Button navbar><FontAwesome name="home" /></Button></Link>
       </div>
     </Wrapper>
   );

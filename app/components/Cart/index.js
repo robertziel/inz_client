@@ -2,10 +2,14 @@ import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
+import StoreAccessor from 'containers/BackendApiConnector/StoreAccessor';
+import FontAwesome from 'react-fontawesome';
+import { Link } from "react-router-dom";
 
 import { Modal, Button, Paper } from 'components/_ui-elements';
-import { ShoppingCart } from '@material-ui/icons';
 import { getCart } from './selectors';
+import Wrapper from './Wrapper';
+import { mustSignInNotify } from './notifications';
 
 import Total from './Total';
 import Product from './Product';
@@ -68,6 +72,14 @@ class Cart extends React.Component {
   }
 
   render() {
+    const isSignedIn = StoreAccessor.store.getState().backendApiConnector.authenticationToken == null;
+
+    if (isSignedIn) {
+      return (
+        <Wrapper><Link to="/sign-in"><Button onClick={mustSignInNotify} navbar><FontAwesome name="shopping-cart" /></Button></Link></Wrapper>
+      );
+    }
+
     if (!this.props.cart) return <p>loading...!!!!</p>;
 
     const component = this;
@@ -84,9 +96,9 @@ class Cart extends React.Component {
     });
 
     return (
-      <div>
-        <Button onClick={component.openModal}>
-          <ShoppingCart /> Cart
+      <Wrapper>
+        <Button navbar onClick={component.openModal}>
+          <FontAwesome name="shopping-cart" />
         </Button>
         <Modal open={this.state.open}>
           <Paper>
@@ -102,7 +114,7 @@ class Cart extends React.Component {
             </Button>
           </Paper>
         </Modal>
-      </div>
+      </Wrapper>
     );
   }
 }

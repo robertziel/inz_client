@@ -16,7 +16,7 @@ function Footer(props) {
             {...messages.authorMessage}
             values={{
               author: (
-                <a href="https://robertz.co" target="_blank">
+                <a href="https://github.com/robertziel" target="_blank">
                   Robert Zieliński
                 </a>
               ),
