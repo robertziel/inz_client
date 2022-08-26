@@ -10,6 +10,6 @@ export const scope = 'app.containers.HomePage';
 export default defineMessages({
   header: {
     id: `${scope}.header`,
-    defaultMessage: 'Welcome to our online shop.',
+    defaultMessage: 'Search for your products.',
   },
 });

@@ -22,6 +22,9 @@ function Navbar() {
         <Cart />
       </div>
       <div className="navbar-right">
+        <Link to="/orders"><Button navbar><FontAwesome name="book" /></Button></Link>
+      </div>
+      <div className="navbar-right">
         <Link to="/profile"><Button navbar><FontAwesome name="user" /></Button></Link>
       </div>
       <div className="navbar-right">

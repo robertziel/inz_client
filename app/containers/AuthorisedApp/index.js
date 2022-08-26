@@ -21,6 +21,7 @@ import Footer from 'components/Footer/index';
 
 import HomePage from 'containers/_publicPages/HomePage/Loadable';
 import ProfilePage from 'containers/_nonpublicPages/ProfilePage/Loadable';
+import OrdersPage from 'containers/_nonpublicPages/OrdersPage/Loadable';
 import NotFoundPage from 'containers/_publicPages/NotFoundPage/Loadable';
 
 import ContentWrapper from './ContentWrapper';
@@ -34,8 +35,7 @@ function App(props) {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/category/:id" component={HomePage} />
           <Route exact path="/profile" component={ProfilePage} />
-          <Route exact path="/sign-in" element={ <Redirect to="/profile" /> } />
-          <Route exact path="/sign-up" element={ <Redirect to="/profile" /> } />
+          <Route exact path="/orders" component={OrdersPage} />
           <Route component={NotFoundPage} />
         </Switch>
       </Scroll>
