@@ -102,7 +102,7 @@ class Cart extends React.Component {
             <Button onClick={component.closeModal}>X</Button>
             {products}
             <Total total={this.state.total} />
-            <CartForm />
+            <CartForm onSuccess={component.closeModal}/>
           </Paper>
         </Modal>
       </Wrapper>

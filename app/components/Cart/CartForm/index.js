@@ -8,7 +8,7 @@ import useApiFetcher from 'containers/BackendApiConnector/fetcher';
 import Form from './Form';
 import Wrapper from './Wrapper';
 
-function CartForm() {
+function CartForm({ onSuccess }) {
   const fetcher = useApiFetcher();
 
   const [user, setUser] = useState();
@@ -26,7 +26,7 @@ function CartForm() {
     <Wrapper>
       <Paper>
         <FetchedContent processing={user === undefined || fetcher.processing}>
-          <Form user={user}/>
+          <Form user={user} onSuccess={onSuccess}/>
         </FetchedContent>
       </Paper>
     </Wrapper>

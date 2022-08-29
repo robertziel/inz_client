@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { getCart } from './../selectors';
 import { clearCart } from './../actions';
+import { useHistory } from "react-router-dom";
 
 import {
   Divider,
@@ -21,8 +22,9 @@ import {
   orderCreationSucceededNotify,
 } from './notifications';
 
-function Form({ intl, user, cart, clearCart }) {
+function Form({ intl, user, cart, clearCart, onSuccess }) {
   const fetcher = useApiFetcher();
+  let history = useHistory();
 
   // Form state
   const [errorMessages, setErrorMessages] = useState({});
@@ -35,7 +37,7 @@ function Form({ intl, user, cart, clearCart }) {
   const onSubmit = (event) => {
     event.preventDefault();
 
-    let products = []
+    let products = [];
 
     Object.keys(cart).forEach(key => {
       products.push({ id: cart[key].id, amount: cart[key].amount });
@@ -57,6 +59,8 @@ function Form({ intl, user, cart, clearCart }) {
           orderCreationSucceededNotify();
           setErrorMessages({});
           clearCart();
+          history.push('/orders');
+          onSuccess();
         } else {
           setErrorMessages(result.error_messages);
           orderCreationFailedNotify();
