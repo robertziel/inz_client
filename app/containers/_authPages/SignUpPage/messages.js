@@ -21,7 +21,7 @@ export default defineMessages({
   },
   formButton: {
     id: `${scope}.form.button`,
-    defaultMessage: 'Sign in',
+    defaultMessage: 'Sign up',
   },
   signedUpNotify: {
     id: `${scope}.notifications.signedUpNotify`,

@@ -11,9 +11,11 @@ import useApiFetcher from 'containers/BackendApiConnector/fetcher';
 
 import messages from './messages';
 import { signedInNotify } from './notifications';
+import { useHistory } from "react-router-dom";
 
 function Form({ intl, onSignInSuccess }) {
   const fetcher = useApiFetcher();
+  const history = useHistory();
 
   // Form state
   const [errorMessage, setErrorMessage] = useState(null);
@@ -37,6 +39,7 @@ function Form({ intl, onSignInSuccess }) {
         if (result.authentication_token) {
           onSignInSuccess(result.authentication_token);
           signedInNotify();
+          history.push('/profile');
         }
       },
     });

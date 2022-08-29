@@ -14,9 +14,11 @@ import StoreAccessor from 'containers/BackendApiConnector/StoreAccessor';
 
 import { signedOutNotify } from './notifications';
 import Wrapper from './Wrapper';
+import { useHistory } from "react-router-dom";
 
 function SignOutSignInButton({ onSignOutSuccess }) {
   const fetcher = useApiFetcher();
+  const history = useHistory();
 
   const isSignedIn = StoreAccessor.store.getState().backendApiConnector.authenticationToken == null;
 
@@ -26,7 +28,10 @@ function SignOutSignInButton({ onSignOutSuccess }) {
     fetcher.delete({
       disableRetry: true,
       path: '/auth/sign_out',
-      afterSuccess: () => onSignOutSuccess(),
+      afterSuccess: () => {
+        history.push('/sign-in');
+        onSignOutSuccess();
+      },
     });
   };
 

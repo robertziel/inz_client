@@ -11,9 +11,11 @@ import { Link } from "react-router-dom";
 
 import messages from './messages';
 import { signedUpNotify } from './notifications';
+import { useHistory } from "react-router-dom";
 
 function Form({ intl, onSignUpSuccess }) {
   const fetcher = useApiFetcher();
+  const history = useHistory();
 
   // Form state
   const [errorMessage, setErrorMessage] = useState(null);
@@ -38,6 +40,7 @@ function Form({ intl, onSignUpSuccess }) {
 
         if (result.success) {
           signedUpNotify();
+          history.push('/sign-in');
         }
       },
     });
