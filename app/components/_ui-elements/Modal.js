@@ -9,6 +9,8 @@ const Modal = styled(({ fullHeight, fullHeightMinusHeader, ...props }) => (
   <ModalCore {...props} />
 ))`
   padding: 10px;
+
+  overflow-y: scroll !important;
 `;
 
 export { Modal };
