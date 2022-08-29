@@ -2,11 +2,19 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { Divider, Grid, H1 } from 'components/_ui-elements';
+import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 
 import OrdersList from './OrdersList';
 import messages from './messages';
+import { useHistory } from "react-router-dom";
+import { authenticationTokenSelector } from 'containers/BackendApiConnector/selectors';
 
-export default function OrdersPage() {
+function OrdersPage({ authenticationToken }) {
+  const history = useHistory();
+
+  if (authenticationToken === null) { history.push('/sign-in') };
+
   return (
     <Grid container fullHeight>
       <Grid item xs={12}>
@@ -21,3 +29,14 @@ export default function OrdersPage() {
     </Grid>
   );
 }
+
+function mapStateToProps() {
+  return createSelector(
+    authenticationTokenSelector(),
+    (authenticationToken) => ({
+      authenticationToken,
+    }),
+  );
+}
+
+export default connect(mapStateToProps)(OrdersPage);

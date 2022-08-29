@@ -20,6 +20,8 @@ import Navbar from 'components/Navbar/index';
 import Footer from 'components/Footer/index';
 
 import HomePage from 'containers/_publicPages/HomePage/Loadable';
+import ProfilePage from 'containers/_nonpublicPages/ProfilePage/Loadable';
+import OrdersPage from 'containers/_nonpublicPages/OrdersPage/Loadable';
 import SignInPage from 'containers/_authPages/SignInPage/Loadable';
 import SignUpPage from 'containers/_authPages/SignUpPage/Loadable';
 import NotFoundPage from 'containers/_publicPages/NotFoundPage/Loadable';
@@ -34,7 +36,8 @@ function App(props) {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/category/:id" component={HomePage} />
-          <Route exact path="/profile" element={ <Redirect to="/sign-in" /> } />
+          <Route exact path="/profile" component={ProfilePage} />
+          <Route exact path="/orders" component={OrdersPage} />
           <Route exact path="/sign-in" component={SignInPage} />
           <Route exact path="/sign-up" component={SignUpPage} />
           <Route component={NotFoundPage} />
